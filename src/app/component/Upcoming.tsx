@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Upcoming from "./component/Upcoming";
-type Movietype = {
+
+type MovieType = {
   adult: boolean;
   backdrop_path: string;
   original: string;
@@ -17,13 +17,13 @@ type Movietype = {
   vote_average: number;
   release_date: string;
 };
-export default function Home() {
-  const [movies, setMovies] = useState<Movietype[] | undefined>();
+export default function Upcoming() {
+  const [movies, setMovies] = useState<MovieType[] | undefined>();
   const token =
     "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZDVjNjBlOTdmYzQxNDVkNGIzZDlhMjk0NjVmZmEzZCIsIm5iZiI6MTczNzM0MjQxMi43MjUsInN1YiI6IjY3OGRiZGNjZTQ1NjYzOTlhMjZlMWEzZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Qig5T_JxICE_KQE6jl2ivbla8UZdUGdSJvm2xW-86NQ";
   const getMovie = async () => {
     const response = await fetch(
-      "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
+      "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1",
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -43,8 +43,6 @@ export default function Home() {
     getMovie();
     console.log("getting movie");
   }, []);
-
-  // console.log({ movies });
   return (
     <div className="flex flex-col gap-5">
       {movies?.map((movie, index) => {
@@ -60,7 +58,6 @@ export default function Home() {
           </div>
         );
       })}
-      <Upcoming />
     </div>
   );
 }
