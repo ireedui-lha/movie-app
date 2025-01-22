@@ -21,26 +21,26 @@ export default async function Upcoming() {
     <div className="">
       <div className="flex justify-between">
         <h1 className="text-3xl font-bold">Upcoming</h1>
-        <Link href="/upcoming">See more...</Link>
+        <button>
+          <Link href="/upcoming">See more...</Link>{" "}
+        </button>
       </div>
       <div className="flex flex-wrap max-w-[1280px] gap-[32px] m-auto">
         {data.results.slice(0, 10).map((movie: any, index: any) => {
           return (
-            <div
-              key={index}
-              className="flex flex-col flex-wrap w-[230px] h-[439px] "
-            >
+            <div key={index} className=" rounded-[20px] overflow-hidden ">
               <img
                 className=" w-[230px] h-[340px]"
                 src={"https://image.tmdb.org/t/p/w500/" + movie?.poster_path}
                 alt=""
               />
-              {movie?.original_title}
-
-              <p className=" text-yellow-400 ">
-                <Star className="fill-current h-4 mt-1" />
-              </p>
-              <p>{movie?.vote_average}</p>
+              <div className="bg-[#27272A] h-[79px] w-[230px] ">
+                <div className="flex">
+                  <Star className="fill-current h-4 mt-1" />
+                  <p>{movie?.vote_average}</p>
+                </div>
+                <p className="font-bold">{movie?.original_title}</p>
+              </div>
             </div>
           );
         })}

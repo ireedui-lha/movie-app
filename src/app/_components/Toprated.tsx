@@ -1,3 +1,4 @@
+import { Star } from "lucide-react";
 import Link from "next/link";
 
 export default async function Toprated() {
@@ -17,8 +18,10 @@ export default async function Toprated() {
   return (
     <div>
       <div className="flex justify-between ">
-        <h1 className="">Top_rated</h1>{" "}
-        <Link href="/toprated">See more...</Link>
+        <h1 className="text-3xl font-bold">Top_rated</h1>
+        <button>
+          <Link href="/toprated">See more...</Link>{" "}
+        </button>
       </div>
 
       <div className="flex flex-wrap max-w-[1280px] gap-[32px] m-auto  ">
@@ -30,9 +33,12 @@ export default async function Toprated() {
                 src={"https://image.tmdb.org/t/p/w500/" + movie?.poster_path}
                 alt=""
               />
-              <div className="h-[79px] w-[230px]  bg-gray-900">
-                <p>{movie?.vote_average}</p>
-                {movie?.original_title}
+              <div className=" h-[79px] w-[230px]  bg-[#27272A] ">
+                <div className="flex">
+                  <Star className="fill-current h-4 mt-1" />
+                  <p>{movie?.vote_average}</p>
+                </div>
+                <p className="font-bold"> {movie?.original_title}</p>
               </div>
             </div>
           );
